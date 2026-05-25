@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AL QUOZ VIEW Restaurant & Cafeteria</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #1a0a00; color: #f5e6d0; min-height: 100vh; }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 3rem; background: rgba(26,10,0,0.95); border-bottom: 1px solid #3d1f00; position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #e8a44a; letter-spacing: 0.05em; }
+  .nav-logo span { color: #f5e6d0; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { color: #c9a87c; font-size: 0.85rem; text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: #e8a44a; }
+
+  .hero { position: relative; padding: 5rem 3rem 4rem; text-align: center; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, #3d1a00 0%, #1a0a00 70%); }
+  .hero-badge { position: relative; display: inline-block; background: #3d1f00; border: 1px solid #e8a44a; color: #e8a44a; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.4rem 1.2rem; border-radius: 2px; margin-bottom: 1.5rem; }
+  .hero h1 { position: relative; font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; line-height: 1.15; color: #f5e6d0; margin-bottom: 0.5rem; }
+  .hero h1 em { color: #e8a44a; font-style: normal; }
+  .hero-sub { position: relative; font-size: 1rem; color: #c9a87c; margin-bottom: 2rem; font-weight: 300; letter-spacing: 0.04em; }
+  .hero-actions { position: relative; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: #e8a44a; color: #1a0a00; border: none; padding: 0.75rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: #d4913a; }
+  .btn-wa { background: #25D366; color: #fff; border: none; padding: 0.75rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; text-decoration: none; display: inline-block; }
+  .btn-wa:hover { background: #1ebe5d; }
+  .btn-secondary { background: transparent; color: #e8a44a; border: 1px solid #e8a44a; padding: 0.75rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: all 0.2s; text-decoration: none; display: inline-block; }
+  .btn-secondary:hover { background: #e8a44a22; }
+
+  .divider { display: flex; align-items: center; gap: 1rem; padding: 0 3rem; margin: 0.5rem 0; }
+  .divider-line { flex: 1; height: 1px; background: #3d1f00; }
+  .divider-icon { color: #e8a44a; font-size: 1.1rem; }
+
+  .info-strip { display: flex; justify-content: center; gap: 3rem; padding: 1.5rem 3rem; background: #220e00; flex-wrap: wrap; }
+  .info-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: #c9a87c; }
+  .info-item strong { color: #f5e6d0; }
+  .info-dot { width: 6px; height: 6px; border-radius: 50%; background: #e8a44a; flex-shrink: 0; }
+
+  .section-label { text-align: center; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #e8a44a; margin-bottom: 0.5rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); text-align: center; color: #f5e6d0; margin-bottom: 2.5rem; }
+
+  .about { padding: 4rem 3rem; max-width: 720px; margin: 0 auto; text-align: center; }
+  .about p { font-size: 1rem; color: #c9a87c; line-height: 1.8; font-weight: 300; }
+
+  .menu-section { padding: 3rem 3rem 4rem; background: #0f0500; }
+  .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.5rem; max-width: 1050px; margin: 0 auto; }
+  .menu-card { background: #1a0a00; border: 1px solid #3d1f00; border-radius: 4px; padding: 1.5rem; transition: border-color 0.2s; display: flex; flex-direction: column; }
+  .menu-card:hover { border-color: #e8a44a55; }
+  .menu-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+  .menu-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #f5e6d0; margin-bottom: 0.4rem; }
+  .menu-card p { font-size: 0.82rem; color: #a07850; line-height: 1.6; flex: 1; }
+  .order-card-btn { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem; background: #25D366; color: #fff; padding: 0.5rem 1rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; border-radius: 2px; text-decoration: none; transition: background 0.2s; width: fit-content; }
+  .order-card-btn:hover { background: #1ebe5d; }
+
+  .reviews-section { padding: 4rem 3rem; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+  .review-card { background: #220e00; border: 1px solid #3d1f00; border-radius: 4px; padding: 1.5rem; }
+  .stars { color: #e8a44a; font-size: 0.9rem; margin-bottom: 0.75rem; letter-spacing: 2px; }
+  .review-text { font-size: 0.85rem; color: #c9a87c; line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+  .reviewer { font-size: 0.78rem; color: #7a5a3a; letter-spacing: 0.05em; }
+
+  .contact-section { padding: 4rem 3rem; background: #0f0500; }
+  .contact-inner { max-width: 700px; margin: 0 auto; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .contact-group h4 { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #e8a44a; margin-bottom: 0.75rem; }
+  .contact-group p { font-size: 0.9rem; color: #c9a87c; line-height: 1.7; }
+  .contact-group a { color: #e8a44a; text-decoration: none; }
+  .map-btn { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; background: #e8a44a; color: #1a0a00; padding: 0.6rem 1.4rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; border: none; cursor: pointer; border-radius: 2px; text-decoration: none; }
+  .wa-contact-btn { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.6rem; background: #25D366; color: #fff; padding: 0.6rem 1.4rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; border: none; cursor: pointer; border-radius: 2px; text-decoration: none; transition: background 0.2s; }
+  .wa-contact-btn:hover { background: #1ebe5d; }
+
+  /* Floating WhatsApp button */
+  .whatsapp-float { position: fixed; bottom: 1.5rem; right: 1.5rem; background: #25D366; color: #fff; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; text-decoration: none; box-shadow: 0 4px 20px #0008; z-index: 999; transition: background 0.2s, transform 0.2s; }
+  .whatsapp-float:hover { background: #1ebe5d; transform: scale(1.08); }
+
+  footer { padding: 2rem 3rem; border-top: 1px solid #3d1f00; text-align: center; }
+  footer p { font-size: 0.78rem; color: #5a3a1a; letter-spacing: 0.05em; }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .hero, .about, .menu-section, .reviews-section, .contact-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .info-strip { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/971523249850?text=Hello!%20I%20would%20like%20to%20place%20an%20order." class="whatsapp-float" title="Order on WhatsApp">💬</a>
+
+<nav>
+  <div class="nav-logo">Al Quoz <span>View</span></div>
+  <div class="nav-links">
+    <a href="#menu">Menu</a>
+    <a href="#about">About</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">Est. — Al Quoz, Dubai</div>
+  <h1>Authentic <em>Kerala</em><br>Flavours in Dubai</h1>
+  <p class="hero-sub">Restaurant & Cafeteria · Al Waha Street, Al Quoz Third</p>
+  <div class="hero-actions">
+    <a href="https://wa.me/971523249850?text=Hello!%20I%20would%20like%20to%20place%20an%20order%20from%20Al%20Quoz%20View%20Restaurant." class="btn-wa">🛒 Order on WhatsApp</a>
+    <a href="#menu" class="btn-secondary">View Menu</a>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-icon">✦</div><div class="divider-line"></div></div>
+
+<div class="info-strip">
+  <div class="info-item"><div class="info-dot"></div><div><strong>Open Daily</strong> · 4:00 AM – 2:00 AM</div></div>
+  <div class="info-item"><div class="info-dot"></div><div>⭐ <strong>4.1 / 5</strong> · 86 Reviews</div></div>
+  <div class="info-item"><div class="info-dot"></div><div>📞 <strong>+971 52 324 9850</strong></div></div>
+</div>
+
+<section class="about" id="about">
+  <div class="section-label">Our Story</div>
+  <h2 class="section-title">Taste of God's Own Country</h2>
+  <p>Nestled in the bustling streets of Al Quoz, we bring the rich, spice-laden traditions of Kerala cuisine straight to your plate. From slow-cooked beef to fragrant ghee rice, every dish is crafted with authentic recipes and a whole lot of heart.</p>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="section-label">What We Serve</div>
+  <h2 class="section-title">Our Specialities</h2>
+  <div class="menu-grid">
+
+    <div class="menu-card">
+      <div class="menu-icon">🍛</div>
+      <h3>Ghee Rice & Beef</h3>
+      <p>Our signature dish. Aromatic basmati cooked in pure ghee, paired with rich Kerala-spiced beef curry.</p>
+      <a href="https://wa.me/971523249850?text=I'd%20like%20to%20order%20Ghee%20Rice%20%26%20Beef%20please!" class="order-card-btn">💬 Order Now</a>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-icon">🍖</div>
+      <h3>Mandi & Kabsa</h3>
+      <p>Slow-cooked whole chicken or lamb over fragrant long-grain rice with a rich spiced broth.</p>
+      <a href="https://wa.me/971523249850?text=I'd%20like%20to%20order%20Mandi%20please!" class="order-card-btn">💬 Order Now</a>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-icon">🫓</div>
+      <h3>Parotta & Curry</h3>
+      <p>Flaky, layered Kerala parotta served with your choice of chicken, beef, or egg curry.</p>
+      <a href="https://wa.me/971523249850?text=I'd%20like%20to%20order%20Parotta%20%26%20Curry%20please!" class="order-card-btn">💬 Order Now</a>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-icon">🐟</div>
+      <h3>Fish Curry & Rice</h3>
+      <p>Traditional Kerala fish curry — tangy, spiced, and slow-cooked in coconut gravy. A true classic.</p>
+      <a href="https://wa.me/971523249850?text=I'd%20like%20to%20order%20Fish%20Curry%20%26%20Rice%20please!" class="order-card-btn">💬 Order Now</a>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-icon">🌯</div>
+      <h3>Shawarma & Grills</h3>
+      <p>Freshly grilled meats wrapped and plated to perfection — a street food favourite done right.</p>
+      <a href="https://wa.me/971523249850?text=I'd%20like%20to%20order%20Shawarma%20please!" class="order-card-btn">💬 Order Now</a>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-icon">🍳</div>
+      <h3>Egg Roast & Appam</h3>
+      <p>Soft, lacy appam paired with spicy Kerala egg roast — a beloved breakfast combo.</p>
+      <a href="https://wa.me/971523249850?text=I'd%20like%20to%20order%20Appam%20%26%20Egg%20Roast%20please!" class="order-card-btn">💬 Order Now</a>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-icon">🍜</div>
+      <h3>Noodles & Fried Rice</h3>
+      <p>Wok-tossed noodles and hearty fried rice dishes for a quick and satisfying meal.</p>
+      <a href="https://wa.me/971523249850?text=I'd%20like%20to%20order%20Noodles%20please!" class="order-card-btn">💬 Order Now</a>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-icon">☕</div>
+      <h3>Karak & Beverages</h3>
+      <p>Round off your meal with a perfectly brewed karak chai, fresh juice, or a cold drink.</p>
+      <a href="https://wa.me/971523249850?text=I'd%20like%20to%20order%20a%20Karak%20please!" class="order-card-btn">💬 Order Now</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="reviews-section" id="reviews">
+  <div class="section-label">Guest Voices</div>
+  <h2 class="section-title">What Our Customers Say</h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"The ghee rice and beef were very nice and full of flavour. It's authentic Kerala-style food, rich in taste and well prepared."</p>
+      <div class="reviewer">— Verified Guest</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">"Even in the crowded streets of Al Quoz, this restaurant shines with amazing taste and quality food."</p>
+      <div class="reviewer">— Verified Guest</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">"Staff is very helpful. The place is always full — better to order takeout or delivery. Absolutely worth it though!"</p>
+      <div class="reviewer">— Verified Guest</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="section-label">Find Us</div>
+  <h2 class="section-title">Visit Us Today</h2>
+  <div class="contact-inner">
+    <div class="contact-grid">
+      <div class="contact-group">
+        <h4>Address</h4>
+        <p>Al Hasmi Building<br>Al Waha Street<br>Al Qouz Third, Al Quoz<br>Dubai, UAE</p>
+        <a href="https://maps.app.goo.gl/c2c3xfZFWX5Xx1719" class="map-btn">📍 Open in Maps</a>
+      </div>
+      <div class="contact-group">
+        <h4>Hours</h4>
+        <p>Open Every Day<br><strong style="color:#f5e6d0">4:00 AM – 2:00 AM</strong></p>
+        <br>
+        <h4>Call & WhatsApp</h4>
+        <p><a href="tel:+971523249850">+971 52 324 9850</a></p>
+        <a href="https://wa.me/971523249850?text=Hello!%20I%20would%20like%20to%20place%20an%20order." class="wa-contact-btn">💬 WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 AL QUOZ VIEW Restaurant & Cafeteria · Al Quoz, Dubai, UAE</p>
+</footer>
+
+</body>
+</html>
